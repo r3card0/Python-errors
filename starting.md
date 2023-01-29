@@ -1,4 +1,6 @@
-ValueError: If using all scalar values, you must pass an index
+# ValueError
+
+### ValueError: If using all scalar values, you must pass an index
 
 This errors appears when i run this code to create a dataframe
 ````
@@ -18,4 +20,11 @@ mydict = {
 }
 
 pd.DataFrame(mydict)
+````
+or
+````
+mydict = {
+    'latitude': 12.34567, 'longitude': 4.5550009983,    
+}
+pd.DataFrame(mydict,index=[0])
 ````
