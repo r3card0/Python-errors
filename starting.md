@@ -1,3 +1,10 @@
+# AttributeError
+### AttributeError: 'set' object has no attribute 'to_excel'
+Este error fue causado porque quise menter un set a un excel. El set debo convertirlo en dataframe y después enviarlo a excel. Y si, se resolvió convirtiendo el set en dataframe
+```
+df = pd.DataFrame(set)
+```
+
 # TypeError
 ### TypeError: cannot concatenate object of type '<class 'str'>'; only Series and DataFrame objs are valid
 Este error fue causado cuando quise colocar los keys de un diccionario, (pensando que ya eran variables válidas).
