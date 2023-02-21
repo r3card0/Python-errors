@@ -6,6 +6,20 @@ df = pd.DataFrame(set)
 ```
 
 # TypeError
+### FutureWarning: Dropping invalid columns in DataFrameGroupBy.add is deprecated. In a future version, a TypeError will be raised. Before calling .add, select only columns which should be valid for the function
+Este error salió porque la columna de Total en vez de ser numerica esta como object. Es porque los valores de Febrero vienen como object. Seguramente es porque tienen coma en vez de punto para separar los decimales. Eso fue, se arreglo en el archivo fuente y ya corre bien
+```orden             float64
+cantidad          float64
+producto           object
+$ unitario        float64
+Total              object
+Método de Pago     object
+Fecha              object
+mesNum             object
+mes                object
+dtype: object
+```
+
 ### TypeError: cannot concatenate object of type '<class 'str'>'; only Series and DataFrame objs are valid
 Este error fue causado cuando quise colocar los keys de un diccionario, (pensando que ya eran variables válidas).
 ```
