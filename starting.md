@@ -1,4 +1,13 @@
 # AttributeError
+### AttributeError: 'MergedCell' object attribute 'value' is read-only
+Se resolvio descomentando la linea ````ws.unmerge_cells("A1:B5")````
+````
+# aplicar merge functions
+ws.merge_cells("A1:B5")
+ws.unmerge_cells("A1:B5")
+ws.merge_cells(start_row=2, start_column=2,end_row=5, end_column=5)
+````
+
 ### AttributeError: 'set' object has no attribute 'to_excel'
 Este error fue causado porque quise menter un set a un excel. El set debo convertirlo en dataframe y después enviarlo a excel. Y si, se resolvió convirtiendo el set en dataframe
 ```
