@@ -1,12 +1,15 @@
+# FileExistsError: [Errno 17] File exists: '/mnt/c/sql/spool/shapefiles/1000'
+Se levantó el error porque el path ya existiá. Se generó en la corrida anterior.
+
 # TypeError: chdir: path should be string, bytes, os.PathLike or integer, not NoneType
 logica cuando se levanto el error:
 ````
 # Create path to store shapefile
-        new_folder_name = f'{self.jira_number}'
-        parent_path = spool + f'/shapefiles/'
-        path = os.path.join(parent_path,new_folder_name)
-        path_in = os.mkdir(path)
-        os.chdir(path=path_in)
+new_folder_name = f'{self.jira_number}'
+parent_path = spool + f'/shapefiles/'
+path = os.path.join(parent_path,new_folder_name)
+path_in = os.mkdir(path)
+os.chdir(path=path_in)
 ````
 Se corrigió cuando cambié ````os.chdir(path=path_in)```` por ````os.chdir(path_in)````
 
