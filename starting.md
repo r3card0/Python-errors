@@ -1,3 +1,15 @@
+# TypeError: chdir: path should be string, bytes, os.PathLike or integer, not NoneType
+logica cuando se levanto el error:
+````
+# Create path to store shapefile
+        new_folder_name = f'{self.jira_number}'
+        parent_path = spool + f'/shapefiles/'
+        path = os.path.join(parent_path,new_folder_name)
+        path_in = os.mkdir(path)
+        os.chdir(path=path_in)
+````
+Se corrigió cuando cambié ````os.chdir(path=path_in)```` por ````os.chdir(path_in)````
+
 # UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 1210: invalid continuation byte
 Este error se levanto porque puse un acento de una palabra dentro del sql script. A pesar de que estaba *comentado*, se levanto el error. Se resolvió removiendo el acento y guardando nuevamente el archivo sql. Fuente consultada: [Obtengo el error "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 30: invalid continuation byte"](https://es.stackoverflow.com/questions/382281/obtengo-el-error-unicodedecodeerror-utf-8-codec-cant-decode-byte-0xf3-in-po)
 
