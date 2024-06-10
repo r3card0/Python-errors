@@ -113,3 +113,10 @@ mydict = {
 }
 pd.DataFrame(mydict,index=[0])
 ````
+
+## ValueError: DataFrame index must be unique for orient='columns'. - exporting to a json file
+
+Se corrigio haciendo un reset del index del Dataframe 
+```python
+df = df.reset_index(drop=True)
+```
