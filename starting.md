@@ -1,3 +1,20 @@
+# UnicodeDecodeError: 'utf-8' codec can't decode byte 0xfc in position 191: invalid start byte, entonce, use la opcion "encoding='cp1252'"
+
+Se pretende leer un archivo csv con pandas, pero se arroja el siguiente error: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xfc in position 191: invalid start byte
+
+El error UnicodeDecodeError: 'utf-8' codec can't decode byte 0xfc indica que pandas está intentando leer el archivo CSV utilizando la codificación utf-8, pero el archivo contiene caracteres que no están codificados en utf-8. El byte 0xfc corresponde a la letra "ü" en la codificación ISO-8859-1 (también conocida como latin1).
+
+Si el archivo proviene de un entorno Windows donde se usan codificaciones especificas, se puede probar el encoding  **cp1252**, que es muy similar al de **latin1** con la diferencia de que **cp1252** maneja mas caracteres.
+
+Al aplicar el encodign **cp1252**, pandas pudo leer el archivo CSV.
+```python
+df = pd.read_csv('archivo.csv', encoding='cp1252')
+```
+
+## ¿Pandas usa el encoding UTF-8 por defecto al leer un archivo CVS o con cualquier formato?
+La respuesta es **SI**. Pandas utiliza el encoding UTF-8 por defecto al leer archivos CSV o cualquier otro formato que implique texto como .json, .txt, etc. Esto quiere decir que si no especifico explicitamente la codificiacion (encoding), pandas buscara interprestar los archivos de texto con UTF-8
+
+
 # FileExistsError: [Errno 17] File exists: '/mnt/c/sql/spool/shapefiles/1000'
 Se levantó el error porque el path ya existiá. Se generó en la corrida anterior.
 
