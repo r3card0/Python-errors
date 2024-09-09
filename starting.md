@@ -1,4 +1,4 @@
-# UnicodeDecodeError: 'utf-8' codec can't decode byte 0xfc in position 191: invalid start byte, entonce, use la opcion "encoding='cp1252'"
+# UnicodeDecodeError: 'utf-8' codec can't decode byte 0xfc in position 191: invalid start byte
 
 Se pretende leer un archivo csv con pandas, pero se arroja el siguiente error: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xfc in position 191: invalid start byte
 
@@ -11,8 +11,31 @@ Al aplicar el encodign **cp1252**, pandas pudo leer el archivo CSV.
 df = pd.read_csv('archivo.csv', encoding='cp1252')
 ```
 
-## ¿Pandas usa el encoding UTF-8 por defecto al leer un archivo CVS o con cualquier formato?
-La respuesta es **SI**. Pandas utiliza el encoding UTF-8 por defecto al leer archivos CSV o cualquier otro formato que implique texto como .json, .txt, etc. Esto quiere decir que si no especifico explicitamente la codificiacion (encoding), pandas buscara interprestar los archivos de texto con UTF-8
+## ¿Pandas usa el encoding UTF-8 por defecto al leer un archivo CSV o con cualquier formato?
+La respuesta es **SI**. Pandas utiliza el encoding UTF-8 por defecto al leer archivos CSV o cualquier otro formato que implique texto como .json, .txt, etc. Esto quiere decir que si no especifico explícitamente la codificación (encoding), pandas buscará interpretar los archivos de texto con UTF-8
+
+## ¿Como crear una función que cuando lea un archivo csv y se presente el error : UnicodeDecodeError: 'utf-8' codec can't decode byte ANY in position ANY: invalid start byte, entonces, use la opcion "encoding='cp1252' "?
+La función sugerida se presenta a continuación, aplicando el bloque *try-except*
+```python
+import pandas as pd
+
+def leer_csv_con_fallback(ruta_archivo):
+    try:
+        # Intentar leer con codificación utf-8
+        df = pd.read_csv(ruta_archivo, encoding='utf-8')
+        print("Archivo leído con codificación utf-8")
+    except UnicodeDecodeError:
+        # Si ocurre el error, intentar con cp1252
+        print("Error de codificación utf-8. Reintentando con cp1252...")
+        df = pd.read_csv(ruta_archivo, encoding='cp1252')
+        print("Archivo leído con codificación cp1252")
+    return df
+
+# Uso de la función
+ruta_archivo = 'archivo.csv'
+df = leer_csv_con_fallback(ruta_archivo)
+```
+
 
 
 # FileExistsError: [Errno 17] File exists: '/mnt/c/sql/spool/shapefiles/1000'
